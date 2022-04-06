@@ -9,9 +9,6 @@ provider "aws" {
  }
 }
 
-
-terraform {
-
 # YOUR BACKEND CONFIGURATION
 # If you want to enable S3 and DynamoDB as Backend, you must to add Permissions Policy on the CodeBuild Role 
 
@@ -22,6 +19,4 @@ terraform {
     region         = "us-east-1"
     dynamodb_table = "terraform-state-lock"
   }
-}
-
 }
