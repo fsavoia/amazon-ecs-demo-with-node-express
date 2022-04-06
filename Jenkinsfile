@@ -16,7 +16,7 @@ pipeline {
 		ECS_MEM="1024"
 		ECS_CPU="512"
 		ECS_NET_MODE="awsvpc"
-		ECS_REQ_COMP="EC2 FARGATE"
+		ECS_REQ_COMP="FARGATE"
     }
 
     stages {
