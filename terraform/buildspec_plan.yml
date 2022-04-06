@@ -11,6 +11,7 @@ phases:
     commands:
       - cd terraform/
       - terraform init
+      - terraform validate
       - terraform plan
       - "export BuildID=`echo $CODEBUILD_BUILD_ID | cut -d: -f1`"
       - "export BuildTag=`echo $CODEBUILD_BUILD_ID | cut -d: -f2`"
