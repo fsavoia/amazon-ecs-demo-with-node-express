@@ -1,12 +1,12 @@
 provider "aws" {
   region = "us-east-1"
   default_tags {
-   tags = {
-     Environment = "Test"
-     Owner       = "TFProviders"
-     Project     = "Test"
-   }
- }
+    tags = {
+      Environment = "Test"
+      Owner       = "TFProviders"
+      Project     = "Test"
+    }
+  }
 }
 
 # YOUR BACKEND CONFIGURATION
