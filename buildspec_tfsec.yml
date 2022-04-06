@@ -16,7 +16,7 @@ phases:
     commands:
       - tfsec -s terraform/code_security_checks/tfsec/tfsec.yml terraform
       - tfsec -s terraform/code_security_checks/tfsec/tfsec.yml terraform --format junit > reports/tfsec/report.xml
-      - "num_errors=`tfsec -s --config-file terraform/code_security_checks/tfsec/tfsec.yml terraform |  grep ERROR | wc -l`"
+      - "export num_errors=`tfsec -s --config-file terraform/code_security_checks/tfsec/tfsec.yml terraform |  grep ERROR | wc -l`"
       - "export BuildID=`echo $CODEBUILD_BUILD_ID | cut -d: -f1`"
       - "export BuildTag=`echo $CODEBUILD_BUILD_ID | cut -d: -f2`"
       - export Region=$AWS_REGION
