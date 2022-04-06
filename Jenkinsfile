@@ -21,6 +21,7 @@ pipeline {
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 652839185683.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'docker tag sample-nodejs-app:latest 652839185683.dkr.ecr.us-east-1.amazonaws.com/sample-app:$BUILD_NUMBER'
                 sh 'docker push 652839185683.dkr.ecr.us-east-1.amazonaws.com/sample-app:$BUILD_NUMBER'
+				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" taskdef.json'
 			}
 		}
 		stage ("Update Task Definition"){
@@ -31,7 +32,8 @@ pipeline {
         }
 		stage ("Upload Artifact"){
 			steps {
-				sh 'aws s3 cp appspec.yml s3://terraform-backend-demo-fsavoia'
+				sh 'zip sample-app.zip *'
+				sh 'aws s3 cp sample-app.zip s3://terraform-backend-demo-fsavoia'
 			}
         }
 		stage ("Cleanup"){
