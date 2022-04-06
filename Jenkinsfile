@@ -29,6 +29,12 @@ pipeline {
 				sh 'aws ecs register-task-definition --region us-east-1 --memory 1024 --cpu 512 --execution-role-arn arn:aws:iam::652839185683:role/ecsTaskExecutionRole --network-mode awsvpc --family td-sample-app --requires-compatibilities EC2 FARGATE --cli-input-json file://taskdef.json'
 			}
         }
+		stage ("Upload Artifact"){
+			steps {
+				sh 'zip sample-app.zip *'
+				sh 'aws s3 cp sample-app.zip s3://terraform-backend-demo-fsavoia'
+			}
+        }
 		stage ("Cleanup"){
 			steps {
                 sh 'docker image prune -a -f'
