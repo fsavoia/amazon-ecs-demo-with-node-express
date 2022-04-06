@@ -2,17 +2,26 @@ pipeline {
     agent any
 
     environment {
+		//AWS PROFILE
 		REGION="us-east-1"
+
+		//GIT DETAILS
         GIT_REPO="https://github.com/fsavoia/amazon-ecs-demo-with-node-express.git"
         GIT_BRANCH="main"
 		GIT_APP_NAME="sample-nodejs-app"
+
+		//ECR DETAILS
 		ECR_REPO="652839185683.dkr.ecr.us-east-1.amazonaws.com/sample-app"
 		ECR_ACC="652839185683.dkr.ecr.us-east-1.amazonaws.com"
-		ECS_EX_ROLE="arn:aws:iam::652839185683:role/ecsTaskExecutionRole"
-		ECS_FAMILY="td-sample-app"
-		CONTAINER_FILE="taskdef.json"
+
+		//ARTIFACTS
 		ZIP_FILE="sample-app.zip"
 		BUCKET_ART="terraform-backend-demo-fsavoia"
+
+		//ECS TASK DEFINITION
+		ECS_EX_ROLE="arn:aws:iam::652839185683:role/ecsTaskExecutionRole"
+		CONTAINER_FILE="taskdef.json"
+		ECS_FAMILY="td-sample-app"
 		ECS_MEM="1024"
 		ECS_CPU="512"
 		ECS_NET_MODE="awsvpc"
