@@ -17,7 +17,6 @@ pipeline {
 		//ARTIFACTS
 		ZIP_FILE="sample-app.zip"
 		BUCKET_ART="terraform-backend-demo-fsavoia"
-		APPSPEC_FILE="appspec.yaml"
 
 		//ECS TASK DEFINITION
 		ECS_EX_ROLE="arn:aws:iam::652839185683:role/ecsTaskExecutionRole"
@@ -67,9 +66,8 @@ pipeline {
         }
 		stage ("Upload Artifact"){
 			steps {
-				sh 'zip -r "$ZIP_FILE" *'
+				sh 'zip -r "$ZIP_FILE" * -x diagram/*'
 				sh 'aws s3 cp "$ZIP_FILE" s3://"$BUCKET_ART"'
-				sh 'aws s3 cp "$APPSPEC_FILE" s3://"$BUCKET_ART"'
 			}
         }
 		stage ("Cleanup"){
