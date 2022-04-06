@@ -10,7 +10,7 @@ pipeline {
 		}
 		stage ("Build"){
 			steps {
-				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" appspec.yml'
+				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" appspec.yaml'
                 dir('sample-nodejs-app'){
                     sh 'docker build -t sample-nodejs-app .'
                 }
