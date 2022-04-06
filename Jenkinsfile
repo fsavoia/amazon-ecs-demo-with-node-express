@@ -31,8 +31,7 @@ pipeline {
         }
 		stage ("Upload Artifact"){
 			steps {
-				sh 'zip sample-app.zip *'
-				sh 'aws s3 cp sample-app.zip s3://terraform-backend-demo-fsavoia'
+				sh 'aws s3 cp appspec.yml s3://terraform-backend-demo-fsavoia'
 			}
         }
 		stage ("Cleanup"){
