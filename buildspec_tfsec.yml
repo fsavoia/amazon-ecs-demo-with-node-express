@@ -12,10 +12,9 @@ phases:
     commands:
       - echo Executing tfsec...
       - mkdir -p reports/tfsec/
-    finally:
-      - echo This always runs even if the login command fails 
   build:
     commands:
+      - ls -ltr
       - tfsec -s terraform/code_security_checks/tfsec/tfsec.yml terraform
       - tfsec -s terraform/code_security_checks/tfsec/tfsec.yml terraform --format junit > reports/tfsec/report.xml
       - num_errors=`tfsec -s --config-file terraform/code_security_checks/tfsec/tfsec.yml terraform |  grep ERROR | wc -l`
