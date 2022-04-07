@@ -70,10 +70,10 @@ pipeline {
 				sh 'aws s3 cp "$ZIP_FILE" s3://"$BUCKET_ART"'
 			}
         }
-		stage ("Cleanup"){
-			steps {
-                sh 'docker image prune -a -f'
-			}
-		}
+		// stage ("Cleanup"){
+		// 	steps {
+        //         sh 'docker image prune -a -f'
+		// 	}
+		// }
     }
 }
