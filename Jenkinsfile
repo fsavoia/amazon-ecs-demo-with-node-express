@@ -64,12 +64,12 @@ pipeline {
 				--cli-input-json file://"$CONTAINER_FILE"'
 			}
         }
-		// stage ("Upload Artifact"){
-		// 	steps {
-		// 		sh 'zip -r "$ZIP_FILE" * -x diagram/*'
-		// 		sh 'aws s3 cp "$ZIP_FILE" s3://"$BUCKET_ART"'
-		// 	}
-        // }
+		stage ("Upload Artifact"){
+			steps {
+				sh 'zip -r "$ZIP_FILE" * -x diagram/*'
+				sh 'aws s3 cp "$ZIP_FILE" s3://"$BUCKET_ART"'
+			}
+        }
 		stage ("Cleanup"){
 			steps {
                 sh 'docker image prune -a -f'
