@@ -11,17 +11,17 @@ pipeline {
 		GIT_APP_NAME="sample-nodejs-app"
 
 		//ECR DETAILS
-		ECR_REPO="652839185683.dkr.ecr.us-east-1.amazonaws.com/sample-app"
-		ECR_ACC="652839185683.dkr.ecr.us-east-1.amazonaws.com"
+		ECR_REPO="349396007468.dkr.ecr.us-east-1.amazonaws.com/sample-app"
+		ECR_ACC="349396007468.dkr.ecr.us-east-1.amazonaws.com"
 
 		//ARTIFACTS
 		ZIP_FILE="sample-app.zip"
-		BUCKET_ART="terraform-backend-demo-fsavoia"
+		BUCKET_ART="poc-artifacts-bucket-fsavoia"
 
 		//ECS TASK DEFINITION
-		ECS_EX_ROLE="arn:aws:iam::652839185683:role/ecsTaskExecutionRole"
+		ECS_EX_ROLE="arn:aws:iam::349396007468:role/ecsTaskExecutionRole"
 		CONTAINER_FILE="taskdef.json"
-		ECS_FAMILY="td-sample-app"
+		ECS_FAMILY="td-poc-app"
 		ECS_MEM="1024"
 		ECS_CPU="512"
 		ECS_NET_MODE="awsvpc"
