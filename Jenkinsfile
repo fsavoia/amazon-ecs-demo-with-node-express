@@ -21,7 +21,7 @@ pipeline {
 		//ECS TASK DEFINITION
 		ECS_EX_ROLE="arn:aws:iam::349396007468:role/ecsTaskExecutionRole"
 		CONTAINER_FILE="taskdef.json"
-		ECS_FAMILY="td-poc-app"
+		ECS_FAMILY="task-poc-app"
 		ECS_MEM="1024"
 		ECS_CPU="512"
 		ECS_NET_MODE="awsvpc"
