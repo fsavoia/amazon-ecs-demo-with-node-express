@@ -2,30 +2,22 @@ pipeline {
     agent any
 
     environment {
-		//AWS PROFILE
+		//AWS REGION
 		REGION="us-east-1"
 
-		//GIT DETAILS
+		//GIT VARS
         GIT_REPO="https://github.com/fsavoia/amazon-ecs-demo-with-node-express.git"
         GIT_BRANCH="main"
 		GIT_APP_NAME="sample-nodejs-app"
 
-		//ECR DETAILS
-		ECR_REPO="349396007468.dkr.ecr.us-east-1.amazonaws.com/sample-app"
+		//ECR/ECS VARS
+		ECR_REPO="sample-app"
 		ECR_ACC="349396007468.dkr.ecr.us-east-1.amazonaws.com"
+		CONTAINER_FILE="taskdef.json"
 
 		//ARTIFACTS
 		ZIP_FILE="sample-app.zip"
 		BUCKET_ART="poc-artifacts-bucket-fsavoia"
-
-		//ECS TASK DEFINITION
-		ECS_EX_ROLE="arn:aws:iam::349396007468:role/ecsTaskExecutionRole"
-		CONTAINER_FILE="taskdef.json"
-		ECS_FAMILY="task-poc-app"
-		ECS_MEM="1024"
-		ECS_CPU="512"
-		ECS_NET_MODE="awsvpc"
-		ECS_REQ_COMP="FARGATE"
     }
 
     stages {
@@ -45,23 +37,14 @@ pipeline {
 		stage ("ECR"){
 			steps {
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin "$ECR_ACC"'
-                sh 'docker tag "$GIT_APP_NAME":latest "$ECR_REPO":$BUILD_NUMBER'
-                sh 'docker push "$ECR_REPO":$BUILD_NUMBER'
+                sh 'docker tag "$GIT_APP_NAME":latest "$ECR_ACC/$ECR_REPO":$BUILD_NUMBER'
+                sh 'docker push "$ECR_ACC/$ECR_REPO":$BUILD_NUMBER'
 				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" "$CONTAINER_FILE"'
 			}
 		}
 		stage ("Update Task Definition"){
 			steps {
 				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" "$CONTAINER_FILE"'
-				// sh 'aws ecs register-task-definition \
-				// --region "$REGION" \
-				// --memory "$ECS_MEM" \
-				// --cpu "$ECS_CPU" \
-				// --execution-role-arn "$ECS_EX_ROLE" \
-				// --network-mode "$ECS_NET_MODE" \
-				// --family "$ECS_FAMILY" \
-				// --requires-compatibilities "$ECS_REQ_COMP" \
-				// --cli-input-json file://"$CONTAINER_FILE"'
 			}
         }
 		stage ("Upload Artifact"){
