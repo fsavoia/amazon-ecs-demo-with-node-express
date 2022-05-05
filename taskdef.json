@@ -23,7 +23,7 @@
       }
     ],
     "cpu": "512",
-    "executionRoleArn": "arn:aws:iam::012345678910:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::349396007468:role/ecsTaskExecutionRole",
     "family": "task-poc-app",
     "memory": "1024",
     "networkMode": "awsvpc",
