@@ -66,7 +66,7 @@ pipeline {
         }
 		stage ("Upload Artifact"){
 			steps {
-				sh 'zip -r "$ZIP_FILE" * -x diagram/*'
+				sh 'zip -r "$ZIP_FILE" * -x sample-nodejs-app/*'
 				sh 'aws s3 cp "$ZIP_FILE" s3://"$BUCKET_ART"'
 			}
         }
