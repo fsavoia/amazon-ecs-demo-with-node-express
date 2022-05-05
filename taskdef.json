@@ -1,5 +1,6 @@
 {
-    "containerDefinitions": [
+  "family": "task-poc-app",
+  "containerDefinitions": [
       {
         "logConfiguration": {
           "logDriver": "awslogs",
