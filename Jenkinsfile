@@ -53,15 +53,15 @@ pipeline {
 		stage ("Update Task Definition"){
 			steps {
 				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" "$CONTAINER_FILE"'
-				sh 'aws ecs register-task-definition \
-				--region "$REGION" \
-				--memory "$ECS_MEM" \
-				--cpu "$ECS_CPU" \
-				--execution-role-arn "$ECS_EX_ROLE" \
-				--network-mode "$ECS_NET_MODE" \
-				--family "$ECS_FAMILY" \
-				--requires-compatibilities "$ECS_REQ_COMP" \
-				--cli-input-json file://"$CONTAINER_FILE"'
+				// sh 'aws ecs register-task-definition \
+				// --region "$REGION" \
+				// --memory "$ECS_MEM" \
+				// --cpu "$ECS_CPU" \
+				// --execution-role-arn "$ECS_EX_ROLE" \
+				// --network-mode "$ECS_NET_MODE" \
+				// --family "$ECS_FAMILY" \
+				// --requires-compatibilities "$ECS_REQ_COMP" \
+				// --cli-input-json file://"$CONTAINER_FILE"'
 			}
         }
 		stage ("Upload Artifact"){

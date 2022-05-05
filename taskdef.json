@@ -1,5 +1,4 @@
 {
-  "family": "task-poc-app",
   "containerDefinitions": [
       {
         "logConfiguration": {
@@ -22,5 +21,16 @@
         "image": "349396007468.dkr.ecr.us-east-1.amazonaws.com/sample-app:<REVISION>",
         "name": "poc-app"
       }
-    ]
+    ],
+    "cpu": "512",
+    "executionRoleArn": "arn:aws:iam::012345678910:role/ecsTaskExecutionRole",
+    "family": "task-poc-app",
+    "memory": "1024",
+    "networkMode": "awsvpc",
+    "runtimePlatform": {
+         "operatingSystemFamily": "LINUX"
+     },
+    "requiresCompatibilities": [
+        "FARGATE" 
+     ]
   }
