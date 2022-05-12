@@ -48,7 +48,8 @@ pipeline {
 					--service $ECS_SERVICE \
 					--codedeploy-deployment-group $DEPLOYMENT_GROUP \
 					--task-definition $CONTAINER_FILE \
-					--codedeploy-appspec $APP_SPEC_FILE'
+					--codedeploy-appspec $APP_SPEC_FILE \
+					--region $REGION'
 			}
         }
 		stage ("Cleanup"){
