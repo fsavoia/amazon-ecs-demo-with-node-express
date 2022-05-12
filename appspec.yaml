@@ -13,10 +13,10 @@ Resources:
           ContainerPort: "3000" # Specify the port for your container where traffic reroutes 
 # Optional properties
         PlatformVersion: "LATEST" # Specify the version of your Amazon ECS Service
-#Hooks:
-# # Hooks for Amazon ECS deployments are:
-#     - BeforeInstall: "" # Specify a Lambda function name or ARN
-#     - AfterInstall: "" # Specify a Lambda function name or ARN
-#     - AfterAllowTestTraffic: "" # Specify a Lambda function name or ARN
-#     - BeforeAllowTraffic: "" # Specify a Lambda function name or ARN
-#     - AfterAllowTraffic: "" # Specify a Lambda function name or ARN
+Hooks:
+# Hooks for Amazon ECS deployments are:
+    # - BeforeInstall: "" # Specify a Lambda function name or ARN
+    # - AfterInstall: "" # Specify a Lambda function name or ARN
+    # - AfterAllowTestTraffic: "" # Specify a Lambda function name or ARN
+    - BeforeAllowTraffic: "arn:aws:lambda:us-east-1:652839185683:function:hook" # Specify a Lambda function name or ARN
+    # - AfterAllowTraffic: "" # Specify a Lambda function name or ARN
