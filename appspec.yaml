@@ -7,7 +7,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:us-east-1:349396007468:task-definition/task-poc-app"
+        TaskDefinition: "arn:aws:ecs:us-east-1:652839185683:task-definition/task-poc-app"
         LoadBalancerInfo: 
           ContainerName: "poc-app" # Specify the name of your Amazon ECS application's container
           ContainerPort: "3000" # Specify the port for your container where traffic reroutes 

@@ -10,14 +10,13 @@ pipeline {
         GIT_BRANCH="main"
 		GIT_APP_NAME="sample-nodejs-app"
 
-		//ECR/ECS VARS
+		//DEPLOYMENT VARS
 		ECR_REPO="sample-app"
-		ECR_ACC="349396007468.dkr.ecr.us-east-1.amazonaws.com"
+		ECR_ACC="652839185683.dkr.ecr.us-east-1.amazonaws.com"
 		CONTAINER_FILE="taskdef.json"
-
-		//ARTIFACTS
-		ZIP_FILE="sample-app.zip"
-		BUCKET_ART="poc-artifacts-bucket-fsavoia"
+		ECS_SERVICE="poc-ecs-svc"
+		DEPLOYMENT_GROUP="DgpECS-poc-sample-svc-sample-app"
+		APP_SPEC_FILE="appspec.yaml"
     }
 
     stages {
@@ -42,15 +41,14 @@ pipeline {
 				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" "$CONTAINER_FILE"'
 			}
 		}
-		stage ("Update Task Definition"){
+		stage ("Deploy"){
 			steps {
 				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" "$CONTAINER_FILE"'
-			}
-        }
-		stage ("Upload Artifact"){
-			steps {
-				sh 'zip -r "$ZIP_FILE" * -x sample-nodejs-app/*'
-				sh 'aws s3 cp "$ZIP_FILE" s3://"$BUCKET_ART"'
+				sh 'aws ecs deploy \
+					--service $ECS_SERVICE \
+					--codedeploy-deployment-group $DEPLOYMENT_GROUP \
+					--task-definition $CONTAINER_FILE \
+					--codedeploy-appspec $APP_SPEC_FILE'
 			}
         }
 		stage ("Cleanup"){
