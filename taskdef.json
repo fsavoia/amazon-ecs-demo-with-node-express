@@ -27,9 +27,6 @@
     "family": "task-poc-app",
     "memory": "1024",
     "networkMode": "awsvpc",
-    "runtimePlatform": {
-         "operatingSystemFamily": "LINUX"
-     },
     "requiresCompatibilities": [
         "FARGATE" 
      ]
