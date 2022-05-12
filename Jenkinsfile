@@ -46,7 +46,7 @@ pipeline {
 			steps {
 				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" "$CONTAINER_FILE"'
 				sh 'aws ecs deploy \
-					--clluster $ECS_CLUSTER \
+					--cluster $ECS_CLUSTER \
 					--service $ECS_SERVICE \
 					--codedeploy-deployment-group $DEPLOYMENT_GROUP \
 					--task-definition $CONTAINER_FILE \
