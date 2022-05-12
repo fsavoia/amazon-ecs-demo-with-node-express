@@ -16,6 +16,7 @@ pipeline {
 		CONTAINER_FILE="taskdef.json"
 		ECS_CLUSTER="poc-ecs-cluster"
 		ECS_SERVICE="poc-ecs-svc"
+		DEPLOYMENT_APP="AppECS-poc-sample-svc-sample-app"
 		DEPLOYMENT_GROUP="DgpECS-poc-sample-svc-sample-app"
 		APP_SPEC_FILE="appspec.yaml"
     }
@@ -48,6 +49,7 @@ pipeline {
 				sh 'aws ecs deploy \
 					--cluster $ECS_CLUSTER \
 					--service $ECS_SERVICE \
+					--codedeploy-application $DEPLOYMENT_APP \
 					--codedeploy-deployment-group $DEPLOYMENT_GROUP \
 					--task-definition $CONTAINER_FILE \
 					--codedeploy-appspec $APP_SPEC_FILE \
