@@ -14,6 +14,7 @@ pipeline {
 		ECR_REPO="sample-app"
 		ECR_ACC="652839185683.dkr.ecr.us-east-1.amazonaws.com"
 		CONTAINER_FILE="taskdef.json"
+		ECS_CLUSTER="poc-ecs-cluster"
 		ECS_SERVICE="poc-ecs-svc"
 		DEPLOYMENT_GROUP="DgpECS-poc-sample-svc-sample-app"
 		APP_SPEC_FILE="appspec.yaml"
@@ -45,6 +46,7 @@ pipeline {
 			steps {
 				sh 'sed -i "s/<REVISION>/$BUILD_NUMBER/g" "$CONTAINER_FILE"'
 				sh 'aws ecs deploy \
+					--clluster $ECS_CLUSTER \
 					--service $ECS_SERVICE \
 					--codedeploy-deployment-group $DEPLOYMENT_GROUP \
 					--task-definition $CONTAINER_FILE \
