@@ -7,7 +7,7 @@ pipeline {
 
 		//GIT VARS
         GIT_REPO="https://github.com/fsavoia/amazon-ecs-demo-with-node-express.git"
-        GIT_BRANCH="main"
+        GIT_BRANCH="develop"
 		GIT_APP_NAME="sample-nodejs-app"
 
 		//DEPLOYMENT VARS
