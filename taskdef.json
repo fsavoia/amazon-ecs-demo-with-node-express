@@ -18,12 +18,12 @@
         ],
         "cpu": 0,
         "memoryReservation": 256,
-        "image": "349396007468.dkr.ecr.us-east-1.amazonaws.com/sample-app:<REVISION>",
+        "image": "652839185683.dkr.ecr.us-east-1.amazonaws.com/sample-app:<REVISION>",
         "name": "poc-app"
       }
     ],
     "cpu": "512",
-    "executionRoleArn": "arn:aws:iam::349396007468:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::652839185683:role/ecsTaskExecutionRole",
     "family": "task-poc-app",
     "memory": "1024",
     "networkMode": "awsvpc",
